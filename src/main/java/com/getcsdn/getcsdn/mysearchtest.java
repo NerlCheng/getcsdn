@@ -1,21 +1,16 @@
 package com.getcsdn.getcsdn;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 import com.itextpdf.text.pdf.BaseFont;
-
 import com.itextpdf.text.DocumentException;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import org.xhtmlrenderer.pdf.ITextRenderer;
+import com.getcsdn.getcsdn.Handler.contractHandler;
 
 @Controller
 public class mysearchtest {
@@ -28,7 +23,7 @@ public class mysearchtest {
     static String PDFNAME = "cjppdf";//pdf文件名
     static String HTMLNAME = "cjpthml";//html文件名
 
-    private static final String CONTRACT = ConfigUtil.pro.getProperty("export.examPaper.CONTRACT");
+
 
 
 
@@ -36,7 +31,8 @@ public class mysearchtest {
     private getCsdnTitleAndUrl getCsdnTitleAndUrl;
     @Resource
     private  getCsdnArticle getCsdnArticle;
-
+    @Resource
+    private contractHandler contractHandler;
 
 
     @RequestMapping("/getcsdn")
@@ -51,12 +47,8 @@ public class mysearchtest {
 
             String templateName = "getcsdn";
             Map<String, Object> paramMap = new HashMap<>();
-            elementList.forEach(a -> paramMap.put("csdnContent", elementList.toString().replaceAll("<br>","<br></br>")));
-            contractHandler(templateName, paramMap, PDFNAME, HTMLNAME);
-
-
-
-
+            elementList.forEach(a -> paramMap.put("csdnContent", elementList.toString()));
+            contractHandler.contractHandler(templateName, paramMap, PDFNAME, HTMLNAME);
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -102,54 +94,9 @@ public class mysearchtest {
     }
 
 
-    public void contractHandler(String templateName, Map<String,
-            Object> paramMap, String pdfName, String htmlName) throws Exception {
-        // 获取本地模板存储路径、合同文件存储路径
-        String fileUrl = this.getClass().getClassLoader().getResource("templates").getPath();
-        String templatePath = fileUrl;
-        String contractPath = CONTRACT;
-        // 组装html和pdf合同的全路径URL
-        String localHtmlUrl = contractPath + htmlName + ".html";
-        String localPdfPath = contractPath + "/" + "chengjinpenggetcsdn";
-        // 判断本地路径是否存在如果不存在则创建
-        File localFile = new File(localPdfPath);
-        if (!localFile.exists()) {
-            localFile.mkdirs();
-        }
-        String localPdfUrl = localFile + "/" + pdfName + ".pdf";
-        templateName = templateName + ".ftl";
-        htmHandler(templatePath, templateName, localHtmlUrl, paramMap);// 生成html合同
-        pdfHandler(localHtmlUrl, localPdfUrl);// 根据html合同生成pdf合同
-//        deleteFile(localHtmlUrl);// 删除html格式合同
-        System.out.println("PDF生成成功");
-    }
 
-    /**
-     * @Description: 由ftl模板生成HTML文件
-     * @Param:templatePath 模板路径
-     * @param:templateName 模板名称
-     * @param:htmUrl html的URL
-     * @param:paramMap 存放参数的map
-     * @return: 4:13 PM
-     * @Author: 杨光彩
-     * @Date: 5/16/2019
-     */
-    private static void htmHandler(String templatePath, String templateName,
-                                   String htmUrl, Map<String, Object> paramMap) throws Exception {
-        Configuration cfg = new Configuration();
-        cfg.setDefaultEncoding("UTF-8");
-        cfg.setDirectoryForTemplateLoading(new File(templatePath));
 
-        Template template = cfg.getTemplate(templateName);
 
-        File outHtmFile = new File(htmUrl);
-
-        Writer out = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(outHtmFile), "utf-8"));
-        template.process(paramMap, out);
-
-        out.close();
-    }
 
     /**
      * @Description: 由html生成PDF

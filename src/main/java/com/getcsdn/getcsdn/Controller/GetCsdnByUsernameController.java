@@ -1,9 +1,7 @@
-package com.getcsdn.getcsdn;
+package com.getcsdn.getcsdn.Controller;
 
 import java.io.*;
 import java.util.*;
-import com.itextpdf.text.pdf.BaseFont;
-import com.itextpdf.text.DocumentException;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +11,7 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 import com.getcsdn.getcsdn.Handler.contractHandler;
 
 @Controller
-public class mysearchtest {
+public class GetCsdnByUsernameController {
     private static String blogName = "aiming66";
     private static final String PRE_URL = "https://blog.csdn.net/";
     private static final String SUF_URL = "/article/list/";
@@ -25,9 +23,9 @@ public class mysearchtest {
 
 
     @Resource
-    private getCsdnTitleAndUrl getCsdnTitleAndUrl;
+    private com.getcsdn.getcsdn.getCsdnTitleAndUrl getCsdnTitleAndUrl;
     @Resource
-    private getCsdnArticle getCsdnArticle;
+    private com.getcsdn.getcsdn.getCsdnArticle getCsdnArticle;
     @Resource
     private contractHandler contractHandler;
 

@@ -30,7 +30,7 @@ public class contractHandler {
         templateName = templateName + ".ftl";
         htmlHandler.htmHandler(templatePath, templateName, localHtmlUrl, paramMap);// 生成html合同
 
-//        pdfHandler(localHtmlUrl, localPdfUrl);// 根据html合同生成pdf合同
+
 
     }
 }

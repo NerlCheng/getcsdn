@@ -1,4 +1,4 @@
-package com.getcsdn.getcsdn;
+package com.getcsdn;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

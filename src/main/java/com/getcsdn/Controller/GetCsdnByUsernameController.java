@@ -1,14 +1,14 @@
-package com.getcsdn.getcsdn.Controller;
+package com.getcsdn.Controller;
 
 import java.io.*;
 import java.util.*;
+
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
-import org.xhtmlrenderer.pdf.ITextRenderer;
-import com.getcsdn.getcsdn.Handler.contractHandler;
+import com.getcsdn.Handler.contractHandler;
 
 @Controller
 public class GetCsdnByUsernameController {
@@ -23,9 +23,9 @@ public class GetCsdnByUsernameController {
 
 
     @Resource
-    private com.getcsdn.getcsdn.getCsdnTitleAndUrl getCsdnTitleAndUrl;
+    private com.getcsdn.getCsdnTitleAndUrl getCsdnTitleAndUrl;
     @Resource
-    private com.getcsdn.getcsdn.getCsdnArticle getCsdnArticle;
+    private com.getcsdn.getCsdnArticle getCsdnArticle;
     @Resource
     private contractHandler contractHandler;
 

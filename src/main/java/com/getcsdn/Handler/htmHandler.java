@@ -1,4 +1,4 @@
-package com.getcsdn.getcsdn.Handler;
+package com.getcsdn.Handler;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -23,15 +23,11 @@ public class htmHandler {
         Configuration cfg = new Configuration();
         cfg.setDefaultEncoding("UTF-8");
         cfg.setDirectoryForTemplateLoading(new File(templatePath));
-
         Template template = cfg.getTemplate(templateName);
-
         File outHtmFile = new File(htmUrl);
-
         Writer out = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(outHtmFile), "utf-8"));
         template.process(paramMap, out);
-
         out.close();
     }
 }

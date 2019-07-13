@@ -1,6 +1,7 @@
 package com.getcsdn.Services.impl;
 
 import com.getcsdn.Services.createDoc;
+import com.getcsdn.entity.ArticleEntity;
 import freemarker.template.Configuration;
 import freemarker.template.ObjectWrapper;
 import freemarker.template.Template;
@@ -8,11 +9,12 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletContext;
 import java.io.*;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class createDocimpl implements createDoc {
-    public String createDoc(String path, String templatePath, Map<String, Object> data, String templateName, String docName) throws IOException {
+    public String createDoc(String path, String templatePath, Map<String,Object>  data, String templateName, String docName) throws IOException {
         long startTime=System.currentTimeMillis();
         System.out.println("生成word开始。。。");
         Configuration configurationc=new Configuration();

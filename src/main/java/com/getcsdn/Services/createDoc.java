@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Map;
 
 public interface createDoc {
-    public String createDoc(String path, String templatePath, Map<String,Object> data, String templateName, String docName) throws IOException;
+    public String createDoc(String path, String templatePath,List<ArticleEntity> articleEntitiesList, String templateName, String docName) throws IOException;
 }

@@ -41,7 +41,7 @@ public class GetCsdnByUsernameController {
                 ArticleEntity articleEntity = getCsdnArticle.getArticleFromUrl(li[0],li[1],blogName);
                 if (articleEntity.getCreateDate()!=null){
                     articleEntitiesList.add(articleEntity);
-                    break;
+//                    break;
                 }
 
 
@@ -51,7 +51,9 @@ public class GetCsdnByUsernameController {
 
 //            elementList.forEach(a -> paramMap.put("csdnContent", elementList.toString()));
             paramMap.put("articleEntitiesList",articleEntitiesList);
-                contractHandler.contractHandler(templateName,  paramMap);
+            System.out.println(articleEntitiesList.get(0).getTitle());
+//                contractHandler.contractHandler(templateName,  paramMap);
+            contractHandler.contractHandler(templateName,  articleEntitiesList);
 
         } catch (IOException e) {
             e.printStackTrace();

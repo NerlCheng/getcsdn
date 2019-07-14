@@ -4,6 +4,7 @@ import com.getcsdn.ConfigUtil;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 import com.getcsdn.Services.createDoc;
 import com.getcsdn.entity.ArticleEntity;
@@ -16,7 +17,7 @@ public class contractHandler {
     @Resource
     private createDoc createDoc;
 
-    public void contractHandler(String templateName, Map<String,Object> paramMap) throws Exception {
+    public void contractHandler(String templateName, List<ArticleEntity> articleEntitiesList) throws Exception {
         // 获取本地模板存储路径、合同文件存储路径
         String fileUrl = this.getClass().getClassLoader().getResource("templates").getPath();
         String templatePath = fileUrl;
@@ -28,7 +29,7 @@ public class contractHandler {
             localFile.mkdirs();
         }
         templateName = templateName + ".ftl";
-        createDoc.createDoc(contractPath, templatePath, paramMap,  templateName, "chengjinpengcreate.doc");
+        createDoc.createDoc(contractPath, templatePath, articleEntitiesList,  templateName, "chengjinpengcreate.doc");
 
     }
 }

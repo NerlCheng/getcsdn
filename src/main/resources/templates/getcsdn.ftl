@@ -5,13 +5,12 @@
 </head>
 <body style="font-family: SimSun;line-height:1">
 
-<#list articleEntitiesList as list>
-    <#--<span>${list.title}</span> <br/>-->
-    <#--<span>${list.Url}</span> <br/>-->
-    <span>${articleEntitiesList.ArticleContent}</span> <br/>
-
-    <#--<span>${list.CreateDate}</span> <br/>-->
-
+<#list articleEntitiesList as aelist>
+    <span>${aelist.title}</span> <br/>
+    <#--<span>${aelist.Url}</span> <br/>-->
+    <#--<span>${aelist.ArticleContent}</span> <br/>-->
+    <#--<span>${aelist.CreateDate}</span> <br/>-->
+<#--<span>${aelist}</span> <br/>-->
 </#list>
 </body>
 </html>

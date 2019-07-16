@@ -47,12 +47,11 @@ public class createDocimpl implements createDoc {
             Writer bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath),"utf-8"));
 //            BufferedWriter bw=new BufferedWriter(new FileWriter(filepath));
             //替换模板中的占位符并输出
-//            List<ArticleEntity> articleEntities= JSON.parseArray(JSON.toJSONString(data),ArticleEntity.class);
+//
             Map<String,Object> map= new HashMap<>();
-//            map.put("title","这是一篇文章");
-//            map.put("Url","这是一个地址");
             map.put("articleEntitiesList",articleEntitiesList);
             template.process(map,bw, ObjectWrapper.BEANS_WRAPPER);
+//            template.process(articleEntitiesList,bw);
             bw.close();
             System.out.println("输出路径为："+filepath);
             return filepath;

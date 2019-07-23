@@ -16,7 +16,7 @@ public class getCsdnTitleAndUrl {
     //获取博客地址和博客标题
     public  List<String[]>  getcsdn(String PRE_URL,String SUF_URL ,String blogName) throws IOException, InterruptedException {
         List<String[]> allData = new ArrayList<>();
-        for (int i = 1; ; i++) {
+        for (int i = 1; i<=2; i++) {
             Thread.currentThread().sleep(800);
             System.out.println(blogName+"您好："+"我正在爬取第" +i + "页的博客连接，请稍等！！！");
             String url = PRE_URL + blogName + SUF_URL + i;

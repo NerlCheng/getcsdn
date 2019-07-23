@@ -12,7 +12,7 @@
         <span>${aelist.createDate!"没有爬到创建时间，请自行粘贴"}</span> <br/>
         <span>${aelist.articleContent!"没有爬到内容，请自行粘贴"}</span> <br/>
         <span>${aelist.url!"没有爬到url，请自行粘贴"}</span> <br/>
-            <span><img src="D:\05.png"></span>
+
     </#if>
 </#list>
 </#if>

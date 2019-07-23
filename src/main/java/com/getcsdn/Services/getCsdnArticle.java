@@ -42,6 +42,8 @@ public class getCsdnArticle {
                 e.printStackTrace();
             }
         }
+
+        System.out.println("爬取完成博客：《"+title+"》");
         return articleEntity;
     }
 }

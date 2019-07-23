@@ -36,7 +36,12 @@ public class createDocimpl  {
             if(!file.exists()){
                 file.mkdirs();
             }
+//            判断word 文件是否已经存储，存在的话则删除
             filepath+="/"+docName;
+            file =new File(filepath);
+            if(file.exists()){
+                file.delete();
+            }
             Writer bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath),"utf-8"));
             //替换模板中的占位符并输出
             Map<String,Object> map= new HashMap<>();

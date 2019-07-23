@@ -14,8 +14,8 @@ import java.util.Map;
 
 @Service
 public class createDocimpl  {
-    public String createDoc(String path, String templatePath, List<ArticleEntity> articleEntitiesList, String templateName, String docName) throws IOException {
-        long startTime=System.currentTimeMillis();
+    public String createDoc( long startTime, String templatePath, List<ArticleEntity> articleEntitiesList, String templateName, String docName) throws IOException {
+
         System.out.println("生成word开始。。。");
         Configuration configurationc = new Configuration(Configuration.VERSION_2_3_20);
         //设置模板编码格式
@@ -31,13 +31,12 @@ public class createDocimpl  {
             //获取模板设置编码类型
             template=configurationc.getTemplate(templateName,"UTF-8");
             //设置生成word文件的存放路径
-            filepath = path + "export";
+            filepath = "export";
             File file=new File(filepath);
             if(!file.exists()){
-//                file.createNewFile();
                 file.mkdirs();
             }
-            filepath+=docName;
+            filepath+="/"+docName;
             Writer bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filepath),"utf-8"));
             //替换模板中的占位符并输出
             Map<String,Object> map= new HashMap<>();

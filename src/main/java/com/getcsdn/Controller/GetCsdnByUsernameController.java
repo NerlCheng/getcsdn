@@ -15,8 +15,6 @@ public class GetCsdnByUsernameController {
     private static String blogName = "aiming66";
     private static final String PRE_URL = "https://blog.csdn.net/";
     private static final String SUF_URL = "/article/list/";
-    List<String> listArticle = new ArrayList<>();
-    List<Element> elementList = new ArrayList<>();
     public List<ArticleEntity> articleEntitiesList = new ArrayList<>();
     private static final String CONTRACT = ConfigUtil.pro.getProperty("export.CSDN.CONTRACT");
 
@@ -31,6 +29,7 @@ public class GetCsdnByUsernameController {
     public @ResponseBody
     void main(String[] args) {
         try {
+            long startTime=System.currentTimeMillis();
 //            获取博客的连接和标题
             List<String[]> list = getCsdnTitleAndUrl.getcsdn(PRE_URL, SUF_URL, blogName);
 //            获取博客内容
@@ -43,20 +42,12 @@ public class GetCsdnByUsernameController {
             String templateName = "getcsdn";
             Map<String, Object> paramMap = new HashMap<>();
             paramMap.put("articleEntitiesList", articleEntitiesList);
-            System.out.println(articleEntitiesList.get(0).getTitle());
-//            contractHandler.contractHandler(templateName, articleEntitiesList);
-            // 获取本地模板存储路径、文件存储路径
-            String fileUrl = this.getClass().getClassLoader().getResource("templates").getPath();
-            String templatePath = fileUrl;
-            String contractPath = CONTRACT;
-            String localPdfPath = contractPath + "/" + blogName;
+
+            // 获取本地模板存储路径
+            String templatePath = this.getClass().getClassLoader().getResource("templates").getPath();
             // 判断本地路径是否存在如果不存在则创建
-            File localFile = new File(localPdfPath);
-            if (!localFile.exists()) {
-                localFile.mkdirs();
-            }
             templateName = templateName + ".ftl";
-            createDoc.createDoc(contractPath, templatePath, articleEntitiesList,  templateName, blogName+".doc");
+            createDoc.createDoc( startTime,templatePath, articleEntitiesList,  templateName, blogName+".doc");
 
 
         } catch (IOException e) {

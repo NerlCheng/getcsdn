@@ -105,12 +105,16 @@
             <artifactId>javaee-api</artifactId>
             <version>8.0</version>
         </dependency>
-        <!--Java生成带图标的二维码，谷歌插件-->
+        <!--Java生成带logo的二维码，谷歌插件-->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>3.3.0</version>
         </dependency>
+
+
+
+
 
     </dependencies>
 

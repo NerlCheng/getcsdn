@@ -19,9 +19,9 @@ public class getCsdnArticle {
             try {
 
 //                睡眠，防止，不停的访问，导致csdn认为是恶意攻击
-                Thread.currentThread().sleep(1500);
+                Thread.currentThread().sleep(3000);
 //                获取到博客的整个内容
-                Document document = Jsoup.connect(detailurl).userAgent("Mozilla/5.0").timeout(3000).post();
+                Document document = Jsoup.connect(detailurl).userAgent("Mozilla/5.0").timeout(9000).post();
 //                获取博客的标题
 //                Element elementTitle = document.getElementsByClass("title-article").first();//标题。 这边根据class的内容来过滤
 //                获取博客内容
